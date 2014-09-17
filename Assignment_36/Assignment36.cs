@@ -114,7 +114,7 @@ namespace Assignment_36
                 }
             }
 
-            //Tster
+            //Tester 2
 
             Console.WriteLine("= " + stack[0]);
             Console.ReadLine();
