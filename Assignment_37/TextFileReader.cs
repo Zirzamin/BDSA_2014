@@ -15,15 +15,34 @@ namespace Assignment_37
         /// <returns>A string representing the content of the file</returns>
         /// <example>
         /// <code><pre>
-        /// public static void Main()
-        /// {
-        ///     var content = TextFileReader.ReadFile("TextFileReader.cs");
-        ///     var lines = content.Split(new[] {'\\r', '\\n'}, StringSplitOptions.RemoveEmptyEntries);
-        ///     foreach(string line in lines)
-        ///	    {
-        ///	        Console.Out.WriteLine(line);
-        ///	    }
-        /// }
+        public static void Main()
+        {
+
+
+            Console.Write("Some normal text, ");
+            // Changes the background color of the console
+            Console.BackgroundColor = ConsoleColor.Yellow;
+            // Changes the color of the font
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.Write("Some highlighted text");
+            // Resets the colors to the default
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(", and some green text.");
+            Console.ResetColor();
+
+            Console.ReadLine();
+
+
+            var content = TextFileReader.ReadFile("../../TestFile.txta");
+            var lines = content.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string line in lines)
+            {
+                Console.Out.WriteLine(line);
+            }
+
+            Console.ReadLine();
+        }
         /// </pre></code>
         /// </example>
         public static string ReadFile(string filename)
@@ -31,9 +50,11 @@ namespace Assignment_37
             try
             {
                 using (var reader = new StreamReader(filename))
-                {   
+                {
+
                     //This reads the entire file
                     return reader.ReadToEnd();
+
                 }
             }
             catch (Exception e)
@@ -41,7 +62,7 @@ namespace Assignment_37
                 //Might happen if the file is not text or non-existent
                 Console.WriteLine("The file could not be read:");
                 Console.WriteLine(e.Message);
-                throw;
+                return e.ToString();
             }
         }
     }
