@@ -13,19 +13,18 @@ namespace Assignment_37
         /// </summary>
         /// <param name="filename">The file name to be read, including the path.</param>
         /// <returns>A string representing the content of the file</returns>
-        /// <example>
-        /// <code><pre>
-        /// public static void Main()
-        /// {
-        ///     var content = TextFileReader.ReadFile("TextFileReader.cs");
-        ///     var lines = content.Split(new[] {'\\r', '\\n'}, StringSplitOptions.RemoveEmptyEntries);
-        ///     foreach(string line in lines)
-        ///	    {
-        ///	        Console.Out.WriteLine(line);
-        ///	    }
-        /// }
-        /// </pre></code>
-        /// </example>
+
+        public static void Main()
+        {
+            var content = ReadFile("../../TestFile.txt");
+            var lines = content.Split(new[] {'\r', '\n'}, StringSplitOptions.RemoveEmptyEntries);
+            foreach(string line in lines)
+        	{
+        	    Console.Out.WriteLine(line);
+        	}
+            Console.ReadKey();
+        }
+
         public static string ReadFile(string filename)
         {
             try
@@ -41,8 +40,9 @@ namespace Assignment_37
                 //Might happen if the file is not text or non-existent
                 Console.WriteLine("The file could not be read:");
                 Console.WriteLine(e.Message);
-                throw;
             }
+
+            return "";
         }
     }
 }
