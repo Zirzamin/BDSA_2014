@@ -10,6 +10,7 @@ namespace Assignment_37
     {
         static void Main(string[] args)
         {
+            Console.Out("hello mehrdad");
         }
     }
 }
