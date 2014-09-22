@@ -1,24 +1,19 @@
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Assignment_37
 {
-    /// <summary>
-    ///   Utility class for reading text files into a single string.
-    /// </summary>
     static class TextFileReader
     {
-        /// <summary>
-        /// Reads a text file and returns its content as a string.
-        /// </summary>
-        /// <param name="filename">The file name to be read, including the path.</param>
-        /// <returns>A string representing the content of the file</returns>
-        /// <example>
-        /// <code><pre>
-        public static void Main()
+        public static void Main(string[] args)
         {
+            string keyLine = "";
+            if(args.Length != 0)
+                keyLine = args[0];
 
-
+            string keyword = "isaac";
+            
             Console.Write("Some normal text, ");
             // Changes the background color of the console
             Console.BackgroundColor = ConsoleColor.Yellow;
@@ -28,33 +23,51 @@ namespace Assignment_37
             // Resets the colors to the default
             Console.ResetColor();
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(", and some green text.");
+            Console.WriteLine(", and some green text.\n");
             Console.ResetColor();
 
-            Console.ReadLine();
+            //  ^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))? -- URL
+            //  /^(?:(Sun|Mon|Tue|Wed|Thu|Fri|Sat),\s+)?(0[1-9]|[1-2]?[0-9]|3[01])\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(19[0-9]{2}|[2-9][0-9]{3})\s+(2[0-3]|[0-1][0-9]):([0-5][0-9])(?::(60|[0-5][0-9]))?\s+([-\+][0-9]{2}[0-5][0-9]|(?:UT|GMT|(?:E|C|M|P)(?:ST|DT)|[A-IK-Z]))(\s+|\(([^\(\)]+|\\\(|\\\))*\))*$/ -- Date
 
-
-            var content = TextFileReader.ReadFile("../../TestFile.txta");
+            var content = TextFileReader.ReadFile("../../TestFile.txt");
             var lines = content.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+
             foreach (string line in lines)
             {
-                Console.Out.WriteLine(line);
+                var matches = Regex.Matches(line, keyword, RegexOptions.IgnoreCase);
+                var arr = Regex.Split(line, keyword, RegexOptions.IgnoreCase);
+
+                for (int i = 0; i < arr.Length; ++i)
+                {
+                    Console.Write(arr[i]);
+                    if (i == arr.Length - 1)
+                        break;
+
+                    Console.BackgroundColor = ConsoleColor.Yellow;
+                    Console.Write(matches[i].ToString());
+                    Console.ResetColor();
+                }
+
+                Console.WriteLine("");
             }
 
-            Console.ReadLine();
+            Console.ReadKey();
+
         }
-        /// </pre></code>
-        /// </example>
+
+        public void findKeyword()
+        {
+            
+        }
+
         public static string ReadFile(string filename)
         {
             try
             {
                 using (var reader = new StreamReader(filename))
                 {
-
                     //This reads the entire file
                     return reader.ReadToEnd();
-
                 }
             }
             catch (Exception e)
