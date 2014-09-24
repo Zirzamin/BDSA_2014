@@ -10,7 +10,7 @@ namespace Assignment_37
 	static class TextFileReader
 	{
 		private const string RegExUrl = @"(([\w-]+://?|www[.])[^\s()<>]+)";
-		private const string RegExDate = @"(Sun|Mon|Tue|Wed|Thu|Fri|Sat),\s+([0-9]?[1-9])\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+[0-9]{4,4}\s+(2[0-3]|[0-1][0-9]):([0-5][0-9]):([0-5][0-9])\s+([-\+][0-9]{2}[0-5][0-9])";
+		private const string RegExDate = @"/^(?:(Sun|Mon|Tue|Wed|Thu|Fri|Sat),\s+)?(0[1-9]|[1-2]?[0-9]|3[01])\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(19[0-9]{2}|[2-9][0-9]{3})\s+(2[0-3]|[0-1][0-9]):([0-5][0-9])(?::(60|[0-5][0-9]))?\s+([-\+][0-9]{2}[0-5][0-9]|(?:UT|GMT|(?:E|C|M|P)(?:ST|DT)|[A-IK-Z]))(\s+|\(([^\(\)]+|\\\(|\\\))*\))*$/";
 		private static string content;
 		private static string[] keys;
 		
@@ -31,7 +31,7 @@ namespace Assignment_37
 
 			Console.WriteLine(keyLine);
 
-			keys = Regex.Split(keyLine, @"\+");
+			keys = Regex.Split(keyLine, @" *\+ *");
 
 			if (keys.Length == 0 || keys.Length > 2)
 			{
@@ -59,31 +59,19 @@ namespace Assignment_37
 
 		public static void DoSearching()
 		{
-			string[] exps = new string[keys.Length];		//	array for strings containing reg expressions for every keyword
+			string[] exps = new string[keys.Length];
 
-			for (var i=0; i<keys.Length; ++i)
+			var i = 0;
+			foreach (var k in keys)
 			{
-				exps[i] = keys[i].Replace(@"*", @"\w*").Trim();		//	replace * sign with regex
+				exps[i] = k.Replace(@"*", @".*").Trim();
+				++i;
 			}
 
-			string keyQuery = string.Join(" ", exps);		// make final expression for keywords
-			Console.WriteLine(keyQuery);
+			Console.WriteLine(string.Join(", ", exps));
 
-			string query = "(" + keyQuery + ")|(" + RegExDate +")|(" + RegExUrl + ")";
-			Console.WriteLine(query);
-
-			string match = Regex.Match(content, query, RegexOptions.IgnoreCase).ToString();
-
-			while (!match.Equals(""))
-			{
-				Console.WriteLine(match);
-				match = Regex.Match(content, query, RegexOptions.IgnoreCase).NextMatch().ToString();
-				//content = Regex.
-				
-			}
-
-			//if()
-
+			//string query = ;
+			//Regex.Match(@"");
 		}
 
 		public static string ReadFile(string filename)
