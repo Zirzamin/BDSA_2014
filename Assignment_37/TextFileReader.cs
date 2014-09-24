@@ -29,7 +29,7 @@ namespace Assignment_37
 				return;
 			}
 
-			Console.WriteLine(keyLine);
+			Console.WriteLine(keyLine + "\n\n");
 
 			keys = Regex.Split(keyLine, @"\+");
 
@@ -67,19 +67,19 @@ namespace Assignment_37
 			}
 
 			string keyQuery = string.Join(" ", exps);		// make final expression for keywords
-			Console.WriteLine(keyQuery);
+			Console.WriteLine(keyQuery + "\n\n");
 
 			string query = "(" + keyQuery + ")|(" + RegExDate +")|(" + RegExUrl + ")";
-			Console.WriteLine(query);
+			Console.WriteLine(query + "\n\n");
 
 			string match = Regex.Match(content, query, RegexOptions.IgnoreCase).ToString();
 
 			while (!match.Equals(""))
 			{
-				Console.WriteLine(match);
+				Console.WriteLine(content + "\n\n");
+				Console.WriteLine(match + "\n\n");
 				match = Regex.Match(content, query, RegexOptions.IgnoreCase).NextMatch().ToString();
-				//content = Regex.
-				
+				content = content.Substring(content.IndexOf(match) + match.Length);
 			}
 
 			//if()
