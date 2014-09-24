@@ -17,7 +17,8 @@ namespace Assignment_37
             var keyword = "isaac";
 
             var urlReg = "((?:http|https)(?::\\/{2}[\\w]+)(?:[\\/|\\.]?)(?:[^\\s\"]*))"; // -- URL
-            var dateReg = "((?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday|Tues|Thur|Thurs|Sun|Mon|Tue|Wed|Thu|Fri|Sat))";
+            var dateReg = @"(Sun|Mon|Tue|Wed|Thu|Fri|Sat)";	// Day Of Week 1
+            //var dateReg = @"(Sun|Mon|Tue|Wed|Thu|Fri|Sat),\s+([0-9]?[1-9])\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+[0-9]{4,4}\s+(2[0-3]|[0-1][0-9]):([0-5][0-9]):([0-5][0-9])\s+([-\+][0-9]{2}[0-5][0-9])";
 
             //"/^(?:(Sun|Mon|Tue|Wed|Thu|Fri|Sat),\s+)?(0[1-9]|[1-2]?[0-9]|3[01])\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(19[0-9]{2}|[2-9][0-9]{3})\s+(2[0-3]|[0-1][0-9]):([0-5][0-9])(?::(60|[0-5][0-9]))?\s+([-\+][0-9]{2}[0-5][0-9]|(?:UT|GMT|(?:E|C|M|P)(?:ST|DT)|[A-IK-Z]))(\s+|\(([^\(\)]+|\\\(|\\\))*\))*$/"; // -- Date
 
@@ -64,10 +65,21 @@ namespace Assignment_37
                 }
 
             }
-            if (Regex.IsMatch(word, dateReg, RegexOptions.IgnoreCase))
+            if (Regex.IsMatch(word, dateReg, RegexOptions.ExplicitCapture))
             {
                 flag = 1;
+
+                Regex r = new Regex(dateReg);
+                Match m = r.Match(word);
+                if (m.Success)
+                {
+                    String dayofweek1 = m.Groups[1].ToString();
+
+                    //print(word, ConsoleColor.Cyan);
+                }
                 print(word, ConsoleColor.DarkRed);
+
+                
             }
             if (Regex.IsMatch(word, keyword, RegexOptions.IgnoreCase) & flag == 0)
             {
