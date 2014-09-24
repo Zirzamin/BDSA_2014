@@ -36,8 +36,6 @@ namespace Assignment_37
 
         }
 
-
-
         private static void SearchKeyword(string word, string keyword, string urlReg, string dateReg)
         {
             var flag = 0;
