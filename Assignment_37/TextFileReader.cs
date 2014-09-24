@@ -17,10 +17,9 @@ namespace Assignment_37
             var keyword = "isaac";
 
             var urlReg = "((?:http|https)(?::\\/{2}[\\w]+)(?:[\\/|\\.]?)(?:[^\\s\"]*))"; // -- URL
-            var dateReg =
-                "((?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Sept|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?))";
+            var dateReg = "((?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday|Tues|Thur|Thurs|Sun|Mon|Tue|Wed|Thu|Fri|Sat))";
 
-                //"/^(?:(Sun|Mon|Tue|Wed|Thu|Fri|Sat),\s+)?(0[1-9]|[1-2]?[0-9]|3[01])\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(19[0-9]{2}|[2-9][0-9]{3})\s+(2[0-3]|[0-1][0-9]):([0-5][0-9])(?::(60|[0-5][0-9]))?\s+([-\+][0-9]{2}[0-5][0-9]|(?:UT|GMT|(?:E|C|M|P)(?:ST|DT)|[A-IK-Z]))(\s+|\(([^\(\)]+|\\\(|\\\))*\))*$/"; // -- Date
+            //"/^(?:(Sun|Mon|Tue|Wed|Thu|Fri|Sat),\s+)?(0[1-9]|[1-2]?[0-9]|3[01])\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(19[0-9]{2}|[2-9][0-9]{3})\s+(2[0-3]|[0-1][0-9]):([0-5][0-9])(?::(60|[0-5][0-9]))?\s+([-\+][0-9]{2}[0-5][0-9]|(?:UT|GMT|(?:E|C|M|P)(?:ST|DT)|[A-IK-Z]))(\s+|\(([^\(\)]+|\\\(|\\\))*\))*$/"; // -- Date
 
             var content = TextFileReader.ReadFile("../../TestFile.txt");
             var words = Regex.Split(content, @"\ |\r");
@@ -37,20 +36,7 @@ namespace Assignment_37
 
         }
 
-        public static void print(string word, ConsoleColor color)
-        {
-            Console.ForegroundColor = color;
-            Console.Write(word);
-            Console.ResetColor();
-        }
 
-        public static void print(string word, ConsoleColor ForegroundColor, ConsoleColor BackgroundColor)
-        {
-            Console.BackgroundColor = BackgroundColor;
-            Console.ForegroundColor = ForegroundColor;
-            Console.Write(word);
-            Console.ResetColor();
-        }
 
         private static void SearchKeyword(string word, string keyword, string urlReg, string dateReg)
         {
@@ -64,7 +50,7 @@ namespace Assignment_37
                 {
                     var sWord = Regex.Split(word, keyword, RegexOptions.IgnoreCase);
                     var matches = Regex.Matches(word, keyword, RegexOptions.IgnoreCase);
-                    
+
                     for (var i = 0; i < sWord.Length; ++i)
                     {
                         print(sWord[i], ConsoleColor.Blue);
@@ -83,8 +69,7 @@ namespace Assignment_37
             if (Regex.IsMatch(word, dateReg, RegexOptions.IgnoreCase))
             {
                 flag = 1;
-                print(word,ConsoleColor.DarkRed);
-
+                print(word, ConsoleColor.DarkRed);
             }
             if (Regex.IsMatch(word, keyword, RegexOptions.IgnoreCase) & flag == 0)
             {
@@ -110,9 +95,19 @@ namespace Assignment_37
             }
         }
 
-        public static void HighLight()
+        public static void print(string word, ConsoleColor color)
         {
+            Console.ForegroundColor = color;
+            Console.Write(word);
+            Console.ResetColor();
+        }
 
+        public static void print(string word, ConsoleColor ForegroundColor, ConsoleColor BackgroundColor)
+        {
+            Console.BackgroundColor = BackgroundColor;
+            Console.ForegroundColor = ForegroundColor;
+            Console.Write(word);
+            Console.ResetColor();
         }
 
 
