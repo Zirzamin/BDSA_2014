@@ -9,8 +9,8 @@ namespace Assignment_37
 {
 	static class TextFileReader
 	{
-		private const string RegExUrl = @"(([\w-]+://?|www[.])[^\s()<>]+)";
-		private const string RegExDate = @"(Sun|Mon|Tue|Wed|Thu|Fri|Sat),\s+([0-9]?[1-9])\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+[0-9]{4,4}\s+(2[0-3]|[0-1][0-9]):([0-5][0-9]):([0-5][0-9])\s+([-\+][0-9]{2}[0-5][0-9])";
+		private const string RegExUrl = @"(([\w-]+://?|www[.])[^\s()<>]+)\s+";
+		private const string RegExDate = @"(Sun|Mon|Tue|Wed|Thu|Fri|Sat),\s+([0-9]?[1-9])\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+[0-9]{4,4}\s+((2[0-3])|([0-1][0-9])):([0-5][0-9]):([0-5][0-9])\s+([-\+][0-9]{2}[0-5][0-9])";
 		private static string content;
 		private static string[] keys;
 		
@@ -70,19 +70,36 @@ namespace Assignment_37
 			Console.WriteLine(keyQuery + "\n\n");
 
 			string query = "(" + keyQuery + ")|(" + RegExDate +")|(" + RegExUrl + ")";
-			Console.WriteLine(query + "\n\n");
 
 			string match = Regex.Match(content, query, RegexOptions.IgnoreCase).ToString();
 
 			while (!match.Equals(""))
 			{
-				Console.WriteLine(content + "\n\n");
-				Console.WriteLine(match + "\n\n");
-				match = Regex.Match(content, query, RegexOptions.IgnoreCase).NextMatch().ToString();
-				content = content.Substring(content.IndexOf(match) + match.Length);
+				string before = Regex.Split( content, match, RegexOptions.IgnoreCase )[0];
+				
+				Console.Write(before);
+
+				if (Regex.IsMatch(match, keyQuery, RegexOptions.IgnoreCase))
+				{
+					Console.BackgroundColor = ConsoleColor.Yellow;
+				}
+				else if (Regex.IsMatch(match, RegExDate, RegexOptions.IgnoreCase))
+				{
+					Console.BackgroundColor = ConsoleColor.Red;
+				}
+				else if (Regex.IsMatch(match, RegExUrl, RegexOptions.IgnoreCase))
+				{
+					Console.BackgroundColor = ConsoleColor.Blue;
+				}
+
+				Console.Write(match);
+				Console.ResetColor();
+				
+				content = content.Substring(before.Length + match.Length);
+
+				match = Regex.Match(content, query).ToString();
 			}
 
-			//if()
 
 		}
 
