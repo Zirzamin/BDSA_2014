@@ -48,7 +48,7 @@ namespace Assignment_37
 
 			for (var i=0; i<keys.Length; ++i)
 			{
-				exps[i] = keys[i].Replace(@"*", @"\w*").Trim();		//	replace * sign with regex
+				exps[i] = keys[i].Replace(@"*", @"[\w'-]*").Trim();		//	replace * sign with regex
 			}
 
 			string keyQuery = @"(?i)" + string.Join(@"\s", exps);		// make final expression for keywords
@@ -59,32 +59,51 @@ namespace Assignment_37
 
 			while (!match.Equals(""))
 			{
+				Console.ResetColor();
+
 				string before = Regex.Split( content, match, RegexOptions.IgnoreCase )[0];
-				
 				Console.Write(before);
 
-				if (Regex.IsMatch(match, keyQuery, RegexOptions.IgnoreCase))
+				if (Regex.IsMatch(match, RegExUrl, RegexOptions.IgnoreCase))
 				{
-					Console.BackgroundColor = ConsoleColor.Yellow;
+					Console.BackgroundColor = ConsoleColor.Blue;
+
+					var matches = Regex.Matches(match, keyQuery, RegexOptions.IgnoreCase);
+					
+					if (matches.Count > 0)
+					{
+						var splited = Regex.Split(match, keyQuery, RegexOptions.IgnoreCase);
+
+						for (var i = 0; i < splited.Length; ++i)
+						{
+							Console.Write(splited[i]);
+
+							if (i == matches.Count)
+							{
+								goto l;
+							}
+
+							Console.BackgroundColor = ConsoleColor.Yellow;
+							Console.Write(matches[i]);
+
+							Console.BackgroundColor = ConsoleColor.Blue;
+						}
+					}
 				}
 				else if (Regex.IsMatch(match, RegExDate, RegexOptions.IgnoreCase))
 				{
 					Console.BackgroundColor = ConsoleColor.Red;
-				}
-				else if (Regex.IsMatch(match, RegExUrl, RegexOptions.IgnoreCase))
+				} 
+				else if (Regex.IsMatch(match, keyQuery, RegexOptions.IgnoreCase))
 				{
-					Console.BackgroundColor = ConsoleColor.Blue;
+					Console.BackgroundColor = ConsoleColor.Yellow;
 				}
 
 				Console.Write(match);
-				Console.ResetColor();
 				
-				content = content.Substring(before.Length + match.Length);
-
+			l:  content = content.Substring(before.Length + match.Length);
 				match = Regex.Match(content, query).ToString();
 			}
-
-
 		}
 
 		public static string ReadFile(string filename)
