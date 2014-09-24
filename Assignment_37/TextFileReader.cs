@@ -29,8 +29,6 @@ namespace Assignment_37
 				return;
 			}
 
-			Console.WriteLine(keyLine + "\n\n");
-
 			keys = Regex.Split(keyLine, @"\+");
 
 			if (keys.Length == 0 || keys.Length > 2)
@@ -41,20 +39,7 @@ namespace Assignment_37
 
 			DoSearching();
 
-			/*Console.Write("Some normal text, ");
-			// Changes the background color of the console
-			Console.BackgroundColor = ConsoleColor.Yellow;
-			// Changes the color of the font
-			Console.ForegroundColor = ConsoleColor.Black;
-			Console.Write("Some highlighted text");
-			// Resets the colors to the default
-			Console.ResetColor();
-			Console.ForegroundColor = ConsoleColor.Green;
-			Console.WriteLine(", and some green text.\n");
-			Console.ResetColor();*/
-
 			Console.ReadKey();
-
 		}
 
 		public static void DoSearching()
@@ -66,8 +51,7 @@ namespace Assignment_37
 				exps[i] = keys[i].Replace(@"*", @"\w*").Trim();		//	replace * sign with regex
 			}
 
-			string keyQuery = string.Join(" ", exps);		// make final expression for keywords
-			Console.WriteLine(keyQuery + "\n\n");
+			string keyQuery = @"(?i)" + string.Join(@"\s", exps);		// make final expression for keywords
 
 			string query = "(" + keyQuery + ")|(" + RegExDate +")|(" + RegExUrl + ")";
 
