@@ -67,6 +67,7 @@ namespace Assignment_37
 				if (Regex.IsMatch(match, RegExUrl, RegexOptions.IgnoreCase))
 				{
 					Console.BackgroundColor = ConsoleColor.Blue;
+                    Console.ForegroundColor = ConsoleColor.Black;
 
 					var matches = Regex.Matches(match, keyQuery, RegexOptions.IgnoreCase);
 					
@@ -93,10 +94,14 @@ namespace Assignment_37
 				else if (Regex.IsMatch(match, RegExDate, RegexOptions.IgnoreCase))
 				{
 					Console.BackgroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Black;
+
 				} 
 				else if (Regex.IsMatch(match, keyQuery, RegexOptions.IgnoreCase))
 				{
 					Console.BackgroundColor = ConsoleColor.Yellow;
+                    Console.ForegroundColor = ConsoleColor.Black;
+
 				}
 
 				Console.Write(match);
