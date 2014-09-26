@@ -21,10 +21,10 @@ namespace UnitTestAssignment_37
 
             // act
 
-            string testKeyQuery = TextFileReader.DoSearching();
+            TextFileReader.DoSearching();
 
             // assert
-            Assert.AreEqual(regexExpected, testKeyQuery,"Fail!");
+            Assert.AreEqual(regexExpected, TextFileReader.,"Fail!");
 
         }
     }
