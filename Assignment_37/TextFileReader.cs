@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
 using System.Text.RegularExpressions;
 
 namespace Assignment_37
@@ -16,9 +13,9 @@ namespace Assignment_37
 		
 		public static void Main(string[] args)
 		{
-			content = TextFileReader.ReadFile("../../TestFile.txt");
+			content = ReadFile("../../TestFile.txt");
 
-			var keyLine = "";
+			string keyLine;
 			if (args.Length != 0)
 			{
 				keyLine = args[0];
