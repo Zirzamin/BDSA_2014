@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Assignment_38
 {
@@ -8,7 +9,8 @@ namespace Assignment_38
 	{
 		static void Main(string[] args)
 		{
-			var eval = "5 1 2 + 4 * + 3 - 12 - 5 pow"; // result 32
+			var eval = "5 1 2 + 4 * + 3 - 12 - 5 pow 7 -"; // result 25
+			Console.WriteLine(eval);
 
 			Dictionary<String, IOperation> dictionary = new Dictionary<string, IOperation>();
 			
@@ -19,7 +21,27 @@ namespace Assignment_38
 			dictionary.Add("*", new BinaryOperation((x, y) => (x * y)));
 			dictionary.Add("/", new BinaryOperation((x, y) => (x / y)));
 			dictionary.Add("pow", new BinaryOperation((x, y) => Math.Pow(x, y)));
-			
+			dictionary.Add("^", new BinaryOperation((x, y) => Math.Pow(x, y)));
+
+			double res = 0;
+			try
+			{
+				res = doMath(eval, dictionary);
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e.ToString());
+				Console.ReadKey();
+				return;
+			}
+
+			Console.WriteLine("= " + res);
+
+			Console.ReadKey();
+		}
+
+		static double doMath(string eval, Dictionary<string, IOperation> dictionary)
+		{
 			string[] split = eval.Split(' ');
 			List<double> stack = new List<double>();
 
@@ -28,7 +50,7 @@ namespace Assignment_38
 			for (int i = 0; i < split.Length; i++)
 			{
 				double temp;
-				if (double.TryParse(split[i], out temp))
+				if (double.TryParse(split[i], NumberStyles.Any, CultureInfo.InvariantCulture, out temp))
 				{
 					stack.Add(temp);
 				}
@@ -48,9 +70,7 @@ namespace Assignment_38
 							}
 							catch (Exception e)
 							{
-								Console.WriteLine("Not enough values in a stack\n" + e.ToString());
-								Console.ReadKey();
-								return;
+								throw new Exception("Not enough values in the stack. Invalid formula");
 							}
 
 						}
@@ -65,33 +85,23 @@ namespace Assignment_38
 							}
 							catch (Exception e)
 							{
-								Console.WriteLine("Not enough values in a stack\n" + e.ToString());
-								Console.ReadKey();
-								return;
+								throw new Exception("Not enough values in the stack. Invalid formula");
 							}
-							
 						}
-						
 					}
 					catch (Exception e)
 					{
-						Console.WriteLine("Unknown operation in formula\n" + e.ToString());
-						Console.ReadKey();
-						return;
+						throw new Exception("Unknown operation in formula");
 					}
 				}
 			}
 
 			if (stack.Count == 1)
-				Console.WriteLine(stack[0]);
+				return stack[0];
 			else
 			{
-				Console.WriteLine("More than 1 values in stack. Probably formula is wrong");
-				Console.ReadKey();
-				return;
+				throw new Exception("More than 1 value in the stack. Invalid formula");
 			}
-
-			Console.ReadKey();
 		}
 	}
 
