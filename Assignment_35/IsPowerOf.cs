@@ -13,6 +13,11 @@ namespace BDSA12
         static bool IsPowerOf(int a, int b)
         {
             // YOUR CODE GOES HERE
+	        if (a == 0 || b == 0)
+	        {
+		        throw new Exception("One of the arguments is 0");
+	        }
+
             if (a == 1)
             {
                 return true;
@@ -25,14 +30,36 @@ namespace BDSA12
             return false;
         }
 
-        static void _Main(string[] args)
+        static void Main(string[] args)
         {
             //MODIFY THIS SECTION TO USE args PARAMETERS
-            int a1 = Int32.Parse(args[0]);
-            int a2 = Int32.Parse(args[1]);
-            Console.WriteLine(IsPowerOf(a1, a2));
+	        if (args.Length != 2)
+	        {
+		        Console.WriteLine("Incorrect input. Should be 2 arguments");
+		        Console.ReadKey();
+		        return;
+	        }
 
-            Console.ReadLine();
+	        int a1 = 0;
+	        int a2 = 0;
+			Int32.TryParse(args[0], out a1);
+			Int32.TryParse(args[1], out a2);
+
+	        bool res = false;
+	        try
+	        {
+		         res = IsPowerOf(a1, a2);
+	        }
+	        catch (Exception e)
+	        {
+				Console.WriteLine(e.ToString());
+		        Console.ReadKey();
+		        return;
+	        }
+	        
+            Console.WriteLine(res);
+
+            Console.ReadKey();
         }
     }
 }

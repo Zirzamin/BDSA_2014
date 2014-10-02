@@ -8,7 +8,7 @@ namespace Ex1
 {
     class Program
     {
-        static void Main(string[] args)
+        static void _Main(string[] args)
         {
             Console.WriteLine("Hello world\n\n\n");
 
