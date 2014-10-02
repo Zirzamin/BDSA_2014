@@ -20,12 +20,6 @@ namespace Assignment_38
 			dictionary.Add("/", new BinaryOperation((x, y) => (x / y)));
 			dictionary.Add("pow", new BinaryOperation((x, y) => Math.Pow(x, y)));
 			
-			//IOperation oper = new UnaryOperation(x => Math.Sqrt(x));
-			//IOperation oper1 = new BinaryOperation((x, y) => (x + y));
-
-			//Console.WriteLine(oper.Execute(9));
-			//Console.WriteLine(oper1.Execute(7, 79));
-
 			string[] split = eval.Split(' ');
 			List<double> stack = new List<double>();
 
@@ -46,28 +40,56 @@ namespace Assignment_38
 
 						if (oper is UnaryOperation)
 						{
-							tempResult = oper.Execute(stack[stack.Count - 1]);
-							stack.RemoveAt(stack.Count - 1);
-							stack.Add(tempResult);
+							try
+							{
+								tempResult = oper.Execute(stack[stack.Count - 1]);
+								stack.RemoveAt(stack.Count - 1);
+								stack.Add(tempResult);
+							}
+							catch (Exception e)
+							{
+								Console.WriteLine("Not enough values in a stack\n" + e.ToString());
+								Console.ReadKey();
+								return;
+							}
+
 						}
 						else if (oper is BinaryOperation)
 						{
-							tempResult = oper.Execute(stack[stack.Count - 2], stack[stack.Count - 1]);
-							stack.RemoveAt(stack.Count - 2);
-							stack.RemoveAt(stack.Count - 1);
-							stack.Add(tempResult);
+							try
+							{
+								tempResult = oper.Execute(stack[stack.Count - 2], stack[stack.Count - 1]);
+								stack.RemoveAt(stack.Count - 2);
+								stack.RemoveAt(stack.Count - 1);
+								stack.Add(tempResult);
+							}
+							catch (Exception e)
+							{
+								Console.WriteLine("Not enough values in a stack\n" + e.ToString());
+								Console.ReadKey();
+								return;
+							}
+							
 						}
 						
 					}
 					catch (Exception e)
 					{
-						Console.WriteLine(e.ToString());
+						Console.WriteLine("Unknown operation in formula\n" + e.ToString());
+						Console.ReadKey();
+						return;
 					}
 				}
 			}
 
-			if(stack.Count == 1)
+			if (stack.Count == 1)
 				Console.WriteLine(stack[0]);
+			else
+			{
+				Console.WriteLine("More than 1 values in stack. Probably formula is wrong");
+				Console.ReadKey();
+				return;
+			}
 
 			Console.ReadKey();
 		}
