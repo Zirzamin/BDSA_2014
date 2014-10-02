@@ -53,6 +53,20 @@
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Assignment_36\Assignment_36.csproj">
+      <Project>{e60e8d93-6a33-42db-8764-5acaffc57ab2}</Project>
+      <Name>Assignment_36</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Assignment_37\Assignment_37.csproj">
+      <Project>{2592b400-6798-4538-aefe-15f4f6146563}</Project>
+      <Name>Assignment_37</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Assignment_38\Assignment_38.csproj">
+      <Project>{ab6d5cff-20d1-40b8-a230-e894319c2b7c}</Project>
+      <Name>Assignment_38</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
