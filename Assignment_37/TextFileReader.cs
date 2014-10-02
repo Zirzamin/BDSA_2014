@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
 using System.Text.RegularExpressions;
 
 namespace Assignment_37
@@ -16,9 +13,9 @@ namespace Assignment_37
 		
 		public static void Main(string[] args)
 		{
-			content = TextFileReader.ReadFile("../../TestFile.txt");
+			content = ReadFile("../../TestFile.txt");
 
-			var keyLine = "";
+			string keyLine;
 			if (args.Length != 0)
 			{
 				keyLine = args[0];
@@ -67,7 +64,6 @@ namespace Assignment_37
 				if (Regex.IsMatch(match, RegExUrl, RegexOptions.IgnoreCase))
 				{
 					Console.BackgroundColor = ConsoleColor.Blue;
-                    Console.ForegroundColor = ConsoleColor.Black;
 
 					var matches = Regex.Matches(match, keyQuery, RegexOptions.IgnoreCase);
 					
@@ -94,14 +90,10 @@ namespace Assignment_37
 				else if (Regex.IsMatch(match, RegExDate, RegexOptions.IgnoreCase))
 				{
 					Console.BackgroundColor = ConsoleColor.Red;
-                    Console.ForegroundColor = ConsoleColor.Black;
-
 				} 
 				else if (Regex.IsMatch(match, keyQuery, RegexOptions.IgnoreCase))
 				{
 					Console.BackgroundColor = ConsoleColor.Yellow;
-                    Console.ForegroundColor = ConsoleColor.Black;
-
 				}
 
 				Console.Write(match);
