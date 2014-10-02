@@ -11,7 +11,7 @@ namespace Assignment_36
         private static void Main()
         {
             //Evaluating 
-            string eval = "5 1 2 + 4 * + 3 - 12 - 5 ^"; // result 14
+            string eval = "5 1 2 + 4 * + 3 - 12 - 5 ^"; // result 32
             Console.WriteLine(eval);
 
             string[] split = eval.Split(' ');
