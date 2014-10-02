@@ -25,7 +25,7 @@ namespace BDSA12
             return false;
         }
 
-        static void _Main(string[] args)
+        static void Main(string[] args)
         {
             //MODIFY THIS SECTION TO USE args PARAMETERS
             int a1 = Int32.Parse(args[0]);

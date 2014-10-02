@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Ex1
 {
-    class Program
+    class HelloWorld
     {
-        static void Main(string[] args)
+        static void _Main(string[] args)
         {
             Console.WriteLine("Hello world\n\n\n");
 
