@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace UnitTestAssignment_37
 {
     [TestClass]
-    public class TextFileReaderTest
+    public class Assignment37_Test
     {
         [TestMethod]
         public void DoSearching_Test()

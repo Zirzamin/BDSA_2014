@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BDSA12
+namespace Assignment_35
 {
-
-    class Program
+	public class Program
     {
 
-        static bool IsPowerOf(int a, int b)
+        public static bool IsPowerOf(int a, int b)
         {
             // YOUR CODE GOES HERE
 	        if (a == 0 || b == 0)
