@@ -54,6 +54,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Assignment35_Test.cs" />
     <Compile Include="Assignment36_Test.cs" />
+    <Compile Include="Assignment38_Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Assignment_35\Assignment_35.csproj">

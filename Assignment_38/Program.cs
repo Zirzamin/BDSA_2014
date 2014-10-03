@@ -5,7 +5,7 @@ using System.Globalization;
 
 namespace Assignment_38
 {
-	class Program
+	public class Program
 	{
 		static void Main(string[] args)
 		{
@@ -40,7 +40,7 @@ namespace Assignment_38
 			Console.ReadKey();
 		}
 
-		static double doMath(string eval, Dictionary<string, IOperation> dictionary)
+		public static double doMath(string eval, Dictionary<string, IOperation> dictionary)
 		{
 			string[] split = eval.Split(' ');
 			List<double> stack = new List<double>();
