@@ -4,9 +4,9 @@ using System.Globalization;
 
 namespace Assignment_36
 {
-    internal class Assignment36
+    public class Assignment36
     {
-        private static void Main()
+        public static void Main()
         {
             //Evaluating 
             string eval = "5 1 2 + 4 * + 3 - 12 - 5 ^"; // result 32
@@ -28,7 +28,7 @@ namespace Assignment_36
             Console.ReadKey();
         }
 
-	    private static double doMath(string eval)
+	    public static double doMath(string eval)
 	    {
 		    string[] split = eval.Split(' ');
 		    List<double> stack = new List<double>();
