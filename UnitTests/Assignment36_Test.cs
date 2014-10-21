@@ -38,7 +38,6 @@ namespace UnitTests
 			}
 		}
 
-		[ExpectedException(typeof(Exception))]
 		[TestMethod]
 		public void polish3()
 		{
