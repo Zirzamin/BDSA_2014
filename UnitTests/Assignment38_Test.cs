@@ -24,6 +24,7 @@ namespace UnitTests
 			Assert.AreEqual(expected, actual, "fail");
 		}
 
+		[ExpectedException(typeof(Exception))]
 		[TestMethod]
 		public void polish2_2()
 		{
@@ -34,21 +35,10 @@ namespace UnitTests
 			dictionary.Add("sqrt", new UnaryOperation(x => Math.Sqrt(x)));
 			dictionary.Add("+", new BinaryOperation((x, y) => (x + y)));
 
-			try
-			{
-				Program.doMath(test, dictionary);
-				Assert.Fail();
-			}
-			catch (AssertFailedException e)
-			{
-				Assert.Fail();
-			}
-			catch (Exception e)
-			{
-				//passed
-			}
+			Program.doMath(test, dictionary);
 		}
 
+		[ExpectedException(typeof(Exception))]
 		[TestMethod]
 		public void polish2_3()
 		{
@@ -59,19 +49,7 @@ namespace UnitTests
 			dictionary.Add("sqrt", new UnaryOperation(x => Math.Sqrt(x)));
 			dictionary.Add("+", new BinaryOperation((x, y) => (x + y)));
 
-			try
-			{
-				Program.doMath(test, dictionary);
-				Assert.Fail();
-			}
-			catch (AssertFailedException e)
-			{
-				Assert.Fail();
-			}
-			catch (Exception e)
-			{
-				//passed
-			}
+			Program.doMath(test, dictionary);
 		}
 	}
 }
