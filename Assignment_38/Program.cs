@@ -70,7 +70,7 @@ namespace Assignment_38
 							}
 							catch (Exception e)
 							{
-								throw new Exception("Not enough values in the stack. Invalid formula");
+								throw new TooFewValuesException("Not enough values in the stack. Invalid formula");
 							}
 
 						}
@@ -85,13 +85,17 @@ namespace Assignment_38
 							}
 							catch (Exception e)
 							{
-								throw new Exception("Not enough values in the stack. Invalid formula");
+								throw new TooFewValuesException("Not enough values in the stack. Invalid formula");
 							}
 						}
 					}
-					catch (Exception e)
+					catch(KeyNotFoundException e)
 					{
-						throw new Exception("Unknown operation in formula");
+						throw new UnknownOperatorException("Unknown operation in formula");
+					}
+					catch(TooFewValuesException e)
+					{
+						throw new TooFewValuesException("Not enough values in the stack. Invalid formula");
 					}
 				}
 			}
@@ -100,7 +104,7 @@ namespace Assignment_38
 				return stack[0];
 			else
 			{
-				throw new Exception("More than 1 value in the stack. Invalid formula");
+				throw new ExtraValueException("More than 1 value in the stack. Invalid formula");
 			}
 		}
 	}
