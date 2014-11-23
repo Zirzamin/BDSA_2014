@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment_36", "Assignment_36\Assignment_36.csproj", "{E60E8D93-6A33-42DB-8764-5ACAFFC57AB2}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{9C937BDE-EF26-4C94-AEA3-983A0198BC6A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment_35", "Assignment_35\Assignment_35.csproj", "{EB3CD6D9-F662-4C61-9DD1-BFD6583BCB6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalendarSystem", "ConsoleApplication1\CalendarSystem.csproj", "{9F1A392C-011C-480D-90C0-E2AB0770E752}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{EB3CD6D9-F662-4C61-9DD1-BFD6583BCB6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB3CD6D9-F662-4C61-9DD1-BFD6583BCB6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB3CD6D9-F662-4C61-9DD1-BFD6583BCB6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F1A392C-011C-480D-90C0-E2AB0770E752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F1A392C-011C-480D-90C0-E2AB0770E752}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F1A392C-011C-480D-90C0-E2AB0770E752}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F1A392C-011C-480D-90C0-E2AB0770E752}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
