@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ConsoleApplication1.CalendarModel;
+using CalendarSystem.CalendarModel;
 
-namespace ConsoleApplication1.CalendarView
+namespace CalendarSystem.CalendarView
 {
 	class ViewWeek : View
 	{

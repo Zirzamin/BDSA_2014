@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ConsoleApplication1.CalendarModel;
-using ConsoleApplication1.CalendarController;
-using ConsoleApplication1.CalendarView;
+using CalendarSystem.CalendarModel;
+using CalendarSystem.CalendarController;
+using CalendarSystem.CalendarView;
 
-namespace ConsoleApplication1
+namespace CalendarSystem
 {
 	class Program
 	{
